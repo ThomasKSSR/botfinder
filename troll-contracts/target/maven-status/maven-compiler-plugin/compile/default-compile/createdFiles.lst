@@ -1,0 +1,5 @@
+com\dissertation\contracts\events\AnalysisCompletedEvent$ResultItem.class
+com\dissertation\contracts\messaging\MessagingConstants.class
+com\dissertation\contracts\events\AnalysisCompletedEvent.class
+com\dissertation\contracts\events\CommentsIngestedEvent.class
+com\dissertation\contracts\events\AnalysisRequestedEvent.class
