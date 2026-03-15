@@ -6,8 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="ingestion-service" />
+        <module name="troll-messaging" />
         <module name="analysis-service" />
+        <module name="ingestion-service" />
         <module name="troll-contracts" />
       </profile>
       <profile name="Annotation profile for dissertatie" enabled="true">
