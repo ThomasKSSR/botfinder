@@ -17,7 +17,7 @@ public class GatewayResultListener {
 
     @RabbitListener(queues = MessagingConstants.Q_GATEWAY_RESULTS)
     public void onCompleted(AnalysisCompletedEvent event) {
-        System.out.println("[GATEWAY] got jobId=" + event.getJobId() + " results=" + event.getResults().size());
+        System.out.println("[GATEWAY] got jobId=" + event.jobId() + " results=" + event.results().size());
         store.complete(event);
     }
 }

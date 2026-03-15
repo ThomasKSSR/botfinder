@@ -21,10 +21,10 @@ public class JobStore {
     public void create(String jobId) { jobs.put(jobId, new JobState(Status.QUEUED)); }
 
     public void complete(AnalysisCompletedEvent event) {
-        JobState state = jobs.getOrDefault(event.getJobId(), new JobState(Status.NOT_FOUND));
+        JobState state = jobs.getOrDefault(event.jobId(), new JobState(Status.NOT_FOUND));
         state.status = Status.DONE;
         state.completed = event;
-        jobs.put(event.getJobId(), state);
+        jobs.put(event.jobId(), state);
     }
 
     public JobState get(String jobId) {

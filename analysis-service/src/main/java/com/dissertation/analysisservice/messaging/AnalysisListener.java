@@ -3,12 +3,14 @@ package com.dissertation.analysisservice.messaging;
 import com.dissertation.analysisservice.detection.BotDetector;
 import com.dissertation.contracts.events.AnalysisCompletedEvent;
 import com.dissertation.contracts.events.CommentsIngestedEvent;
+import com.dissertation.contracts.events.IngestedComment;
 import com.dissertation.contracts.messaging.MessagingConstants;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
+import java.util.List;
 
 @Component
 public class AnalysisListener {
@@ -21,37 +23,42 @@ public class AnalysisListener {
 
     @RabbitListener(queues = MessagingConstants.Q_ANALYSIS)
     public void onComments(CommentsIngestedEvent event) {
-        System.out.println("[ANALYSIS] got jobId=" + event.getJobId() + " comments=" + event.getComments().size());
+        System.out.println("[ANALYSIS] got jobId=" + event.jobId() + " comments=" + event.comments().size());
 
         BotDetector detector = new BotDetector();
-        var detections = detector.detect(event.getComments());
+        List<String> texts = event.comments().stream()
+                .map(com.dissertation.contracts.events.IngestedComment::text)
+                .toList();
 
-// take top suspicious items
-        var top = detections.stream()
-                .sorted((a,b) -> Double.compare(b.score(), a.score()))
+        List<BotDetector.DetectionResult> detections = detector.detect(texts);
+
+        List<BotDetector.DetectionResult> top = detections.stream()
+                .sorted((a, b) -> Double.compare(b.score(), a.score()))
                 .limit(10)
                 .toList();
 
-        var results = top.stream()
-                .map(d -> new com.dissertation.contracts.events.AnalysisCompletedEvent.ResultItem(
-                        "comment#" + d.index(),
-                        d.score(),
-                        d.label(),
-                        d.reason()
-                ))
+        List<AnalysisCompletedEvent.ResultItem> results = top.stream()
+                .map(d -> {
+                    IngestedComment original = event.comments().get(d.index());
+                    return new com.dissertation.contracts.events.AnalysisCompletedEvent.ResultItem(
+                            original.commentId(),
+                            d.score(),
+                            d.label(),
+                            d.reason(),
+                            shorten(original.text())
+                    );
+                })
                 .toList();
 
         rabbit.convertAndSend(
                 MessagingConstants.EXCHANGE,
                 MessagingConstants.RK_ANALYSIS_COMPLETED,
-                new AnalysisCompletedEvent(event.getJobId(), Instant.now(), results)
+                new AnalysisCompletedEvent(event.jobId(), Instant.now(), results)
         );
+    }
 
-
-        rabbit.convertAndSend(
-                MessagingConstants.EXCHANGE,
-                MessagingConstants.RK_ANALYSIS_COMPLETED,
-                new AnalysisCompletedEvent(event.getJobId(), Instant.now(), results)
-        );
+    private String shorten(String text) {
+        if (text == null) return "";
+        return text.length() <= 120 ? text : text.substring(0, 117) + "...";
     }
 }
