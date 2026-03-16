@@ -38,13 +38,14 @@ public class AnalysisListener {
                 .toList();
 
         List<AnalysisCompletedEvent.ResultItem> results = top.stream()
-                .map(d -> {
-                    IngestedComment original = event.comments().get(d.index());
-                    return new com.dissertation.contracts.events.AnalysisCompletedEvent.ResultItem(
+                .map(detectionResult -> {
+                    IngestedComment original = event.comments().get(detectionResult.index());
+                    return new AnalysisCompletedEvent.ResultItem(
                             original.commentId(),
-                            d.score(),
-                            d.label(),
-                            d.reason(),
+                            original.authorName(),
+                            detectionResult.score(),
+                            detectionResult.label(),
+                            detectionResult.reason(),
                             shorten(original.text())
                     );
                 })

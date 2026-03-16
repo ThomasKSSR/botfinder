@@ -52,6 +52,9 @@ public class BotDetector {
                     scored.reason()
             ));
         }
+
+        System.out.println("[DETECTOR] normalized unique count=" + counts.size());
+        System.out.println("[DETECTOR] total comments=" + comments.size());
         return out;
     }
 

@@ -10,6 +10,7 @@ public record AnalysisCompletedEvent(
 ) {
     public record ResultItem(
             String commentId,
+            String authorName,
             double score,
             String label,
             String reason,
