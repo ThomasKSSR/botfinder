@@ -12,7 +12,7 @@ public class GenericPraiseFeature implements FeatureExtractor {
 
     @Override
     public FeatureResult extract(CommentSample sample) {
-        String t = sample.getNormalized();
+        String t = sample.normalized();
         boolean shortText = t.length() <= 30;
         boolean generic = PHRASES.stream().anyMatch(t::contains);
 

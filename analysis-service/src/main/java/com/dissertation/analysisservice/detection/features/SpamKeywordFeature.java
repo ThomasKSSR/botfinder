@@ -15,7 +15,7 @@ public class SpamKeywordFeature implements FeatureExtractor {
 
     @Override
     public FeatureResult extract(CommentSample sample) {
-        String t = sample.getNormalized();
+        String t = sample.normalized();
         int hits = 0;
         for (String k : KEYWORDS) {
             if (t.contains(k)) hits++;

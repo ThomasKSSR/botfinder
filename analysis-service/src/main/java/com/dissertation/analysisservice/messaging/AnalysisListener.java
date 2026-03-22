@@ -24,16 +24,17 @@ public class AnalysisListener {
     @RabbitListener(queues = MessagingConstants.Q_ANALYSIS)
     public void onComments(CommentsIngestedEvent event) {
         System.out.println("[ANALYSIS] got jobId=" + event.jobId() + " comments=" + event.comments().size());
+        //https://archive.ics.uci.edu/dataset/380/youtube+spam+collection
+        // https://www.kaggle.com/datasets/lakshmi25npathi/images
+        // https://www.kaggle.com/datasets/fivethirtyeight/russian-troll-tweets
+
 
         BotDetector detector = new BotDetector();
-        List<String> texts = event.comments().stream()
-                .map(com.dissertation.contracts.events.IngestedComment::text)
-                .toList();
 
-        List<BotDetector.DetectionResult> detections = detector.detect(texts);
+        List<BotDetector.DetectionResult> detections = detector.detect(event.comments());
 
         List<BotDetector.DetectionResult> top = detections.stream()
-                .sorted((a, b) -> Double.compare(b.score(), a.score()))
+                .sorted((left, right) -> Double.compare(right.score(), left.score()))
                 .limit(10)
                 .toList();
 
