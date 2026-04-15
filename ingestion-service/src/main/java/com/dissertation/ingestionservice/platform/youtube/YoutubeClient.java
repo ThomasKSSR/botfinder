@@ -63,6 +63,9 @@ public class YoutubeClient {
                 authorId = (String) authorChannelId.get("value");
             }
 
+            Number likeCountNumber = (Number) topSnippet.get("likeCount");
+            long likeCount = likeCountNumber != null ? likeCountNumber.longValue() : 0L;
+
             String text = (String) topSnippet.get("textDisplay");
             String publishedAtRaw = (String) topSnippet.get("publishedAt");
             Instant publishedAt = publishedAtRaw != null ? Instant.parse(publishedAtRaw) : null;
@@ -72,7 +75,8 @@ public class YoutubeClient {
                     authorId,
                     authorName,
                     text,
-                    publishedAt
+                    publishedAt,
+                    likeCount
             ));
         }
 

@@ -7,5 +7,6 @@ public record IngestedComment(
         String authorId,
         String authorName,
         String text,
-        Instant publishedAt
+        Instant publishedAt,
+        long likeCount
 ) {}

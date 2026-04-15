@@ -12,6 +12,10 @@ public record AnalysisCompletedEvent(
             String commentId,
             String authorName,
             double score,
+            double ruleScore,
+            double spamMlScore,
+            double trollMlScore,
+            double accountHeuristicScore,
             String label,
             String reason,
             String commentPreview
