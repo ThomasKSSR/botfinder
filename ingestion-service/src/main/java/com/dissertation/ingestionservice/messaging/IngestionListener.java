@@ -20,9 +20,15 @@ public class IngestionListener {
 
     @RabbitListener(queues = MessagingConstants.Q_INGESTION)
     public void onRequested(AnalysisRequestedEvent event) {
-        System.out.println("[INGESTION] jobId=" + event.jobId() + " url=" + event.url());
+        int maxComments = event.maxComments() != null ? event.maxComments() : 100;
 
-        var ingested = orchestrator.ingest(event.jobId(), event.url());
+        System.out.println(
+                "[INGESTION] jobId=" + event.jobId() +
+                        " url=" + event.url() +
+                        " maxComments=" + maxComments
+        );
+
+        var ingested = orchestrator.ingest(event.jobId(), event.url(), maxComments);
 
         rabbit.convertAndSend(
                 MessagingConstants.EXCHANGE,

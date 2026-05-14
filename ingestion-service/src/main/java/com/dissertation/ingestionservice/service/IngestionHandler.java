@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface IngestionHandler {
     PlatformType supportedPlatform();
-    List<IngestedComment> ingest(String url);
+    List<IngestedComment> ingest(String url, int maxComments);
 }

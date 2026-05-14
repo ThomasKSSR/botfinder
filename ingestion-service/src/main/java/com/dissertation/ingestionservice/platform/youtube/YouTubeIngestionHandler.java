@@ -24,8 +24,8 @@ public class YouTubeIngestionHandler implements IngestionHandler {
     }
 
     @Override
-    public List<IngestedComment> ingest(String url) {
+    public List<IngestedComment> ingest(String url, int maxComments) {
         String videoId = urlParser.extractVideoId(url);
-        return youtubeClient.fetchComments(videoId);
+        return youtubeClient.fetchComments(videoId, maxComments);
     }
 }

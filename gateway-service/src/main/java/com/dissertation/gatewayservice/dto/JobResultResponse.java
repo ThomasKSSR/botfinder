@@ -1,18 +1,27 @@
 package com.dissertation.gatewayservice.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
-import java.util.Map;
 
 public class JobResultResponse {
+    @JsonProperty("jobId")
     private String jobId;
+
+    @JsonProperty("status")
     private String status;
-    private List<Map<String, Object>> results;
+
+    @JsonProperty("completedAt")
+    private String completedAt;
+
+    @JsonProperty("results")
+    private List<?> results;
 
     public JobResultResponse() {}
 
-    public JobResultResponse(String jobId, String status, List<Map<String, Object>> results) {
+    public JobResultResponse(String jobId, String status, String completedAt, List<?> results) {
         this.jobId = jobId;
         this.status = status;
+        this.completedAt = completedAt;
         this.results = results;
     }
 
@@ -22,6 +31,9 @@ public class JobResultResponse {
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
 
-    public List<Map<String, Object>> getResults() { return results; }
-    public void setResults(List<Map<String, Object>> results) { this.results = results; }
+    public String getCompletedAt() { return completedAt; }
+    public void setCompletedAt(String completedAt) { this.completedAt = completedAt; }
+
+    public List<?> getResults() { return results; }
+    public void setResults(List<?> results) { this.results = results; }
 }

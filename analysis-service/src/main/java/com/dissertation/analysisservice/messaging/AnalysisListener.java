@@ -97,11 +97,24 @@ public class AnalysisListener {
             double accountHeuristicScore = accountHeuristicScorer.score(original, event.comments());
 
             double finalScore =
-                    (0.35 * ruleScore) +
-                            (0.25 * spamScore) +
-                            (0.20 * trollScore) +
-                            (0.20 * accountHeuristicScore);
-            String finalLabel = finalScore >= 0.50 ? "bot-like" : "normal";
+                    (0.30 * ruleScore) +
+                            (0.35 * spamScore) +
+                            (0.25 * trollScore) +
+                            (0.10 * accountHeuristicScore);
+
+            String finalLabel;
+
+            if (spamScore >= 0.85) {
+                finalLabel = "spam";
+            } else if (trollScore >= 0.85) {
+                finalLabel = "troll";
+            } else if (ruleScore >= 0.70 || accountHeuristicScore >= 0.70) {
+                finalLabel = "bot-like";
+            } else if (finalScore >= 0.50) {
+                finalLabel = "suspicious";
+            } else {
+                finalLabel = "normal";
+            }
 
             String finalReason = ruleResult.reason()
                     + "; spam-ml=" + spamLabel

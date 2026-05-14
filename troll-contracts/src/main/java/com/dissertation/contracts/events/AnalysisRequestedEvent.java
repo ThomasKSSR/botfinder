@@ -5,6 +5,7 @@ import java.time.Instant;
 public record AnalysisRequestedEvent(
         String jobId,
         String url,
-        Instant requestedAt
+        Instant requestedAt,
+        Integer maxComments
 ) {}
 

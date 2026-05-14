@@ -16,7 +16,7 @@ public class IngestionOrchestrator {
         this.handlerFactory = handlerFactory;
     }
 
-    public CommentsIngestedEvent ingest(String jobId, String url) {
+    public CommentsIngestedEvent ingest(String jobId, String url, int maxComments) {
         PlatformType platform = platformDetector.detect(url);
 
         if (platform == PlatformType.UNKNOWN) {
@@ -24,7 +24,7 @@ public class IngestionOrchestrator {
         }
 
         var handler = handlerFactory.getHandler(platform);
-        var comments = handler.ingest(url);
+        var comments = handler.ingest(url, maxComments);
 
         return new CommentsIngestedEvent(jobId, platform.name().toLowerCase(), comments);
     }

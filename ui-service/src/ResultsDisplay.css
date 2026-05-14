@@ -1,0 +1,267 @@
+.results-display {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.results-header {
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 1rem;
+}
+
+.results-header h2 {
+  margin: 0 0 0.5rem 0;
+  color: #333;
+  font-size: 1.8rem;
+}
+
+.completed-at {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.results-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: #f9f9f9;
+  border-radius: 4px;
+}
+
+.summary-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.stat-label {
+  color: #666;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-value {
+  color: #667eea;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-top: 0.25rem;
+}
+
+.results-controls {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.control-group label {
+  font-weight: 600;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.control-select {
+  padding: 0.5rem 0.75rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  background: white;
+  font-family: inherit;
+}
+
+.control-select:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.results-table-wrapper {
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: visible;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  border: 1px solid #e0e0e0;
+}
+
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  table-layout: fixed;
+}
+
+.results-table thead {
+  background: #f5f5f5;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.results-table th {
+  padding: 0.75rem;
+  text-align: left;
+  font-weight: 600;
+  color: #333;
+  white-space: nowrap;
+}
+
+.results-table td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #f0f0f0;
+  word-break: break-word;
+}
+
+.results-table tbody tr:hover {
+  background: #f9f9f9;
+}
+
+.cell-author {
+  min-width: 140px;
+  max-width: 180px;
+  word-break: break-word;
+}
+
+.cell-label {
+  text-align: center;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  min-width: 72px;
+}
+
+.badge-spam {
+  background: #ffebee;
+  color: #c62828;
+}
+
+.badge-bot {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+.badge-troll {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+.badge-suspicious {
+  background: #f3e5f5;
+  color: #6a1b9a;
+}
+
+.badge-normal {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.cell-score {
+  text-align: center;
+  font-family: 'Monaco', 'Courier New', monospace;
+}
+
+.score {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 3px;
+  background: #f0f0f0;
+}
+
+.score-high {
+  background: #ffebee;
+  color: #c62828;
+  font-weight: 600;
+}
+
+.score-low {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.cell-reason {
+  width: 320px;
+  min-width: 320px;
+  max-width: 320px;
+  color: #666;
+  font-size: 0.85rem;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  line-height: 1.4;
+}
+
+.cell-preview {
+  width: 420px;
+  min-width: 420px;
+  max-width: 420px;
+  color: #666;
+  font-size: 0.85rem;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  line-height: 1.4;
+}
+
+.no-results {
+  padding: 2rem;
+  text-align: center;
+  color: #999;
+  background: #f9f9f9;
+  border-radius: 4px;
+}
+
+@media (max-width: 1024px) {
+  .results-table {
+    font-size: 0.8rem;
+  }
+
+  .results-table th:nth-child(2),
+  .results-table td:nth-child(2) {
+    min-width: 100px;
+    width: 100px;
+  }
+
+  .cell-reason,
+  .cell-preview {
+    max-width: 150px;
+  }
+}
+
+@media (max-width: 768px) {
+  .results-controls {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .control-group {
+    width: 100%;
+  }
+
+  .control-select {
+    width: 100%;
+  }
+}
