@@ -1,0 +1,25 @@
+﻿# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.env
+.env
+venv/
+.venv/
+ml-service/.venv/
+# IDE
+*.iml
+.idea/
+.vscode/
+# Java
+**/target/
+# Node
+node_modules/
+# Data and models
+ml-service/trained_models/
+ml-service/data/
+# Misc
+*.log
+# Local settings
+*.iml

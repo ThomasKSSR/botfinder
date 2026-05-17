@@ -1,0 +1,470 @@
+Columns found: ['COMMENT_ID', 'AUTHOR', 'DATE', 'CONTENT', 'CLASS']
+Total rows: 1956
+Accuracy: 0.9286
+F1 Score: 0.9286
+
+Classification report:
+              precision    recall  f1-score   support
+
+           0       0.91      0.95      0.93       191
+           1       0.95      0.91      0.93       201
+
+    accuracy                           0.93       392
+   macro avg       0.93      0.93      0.93       392
+weighted avg       0.93      0.93      0.93       392
+
+
+
+Columns found: ['content', 'label']
+Total rows: 20001
+Label distribution:
+label
+0    12179
+1     7822
+Name: count, dtype: int64
+Accuracy: 0.8245
+F1 Score: 0.7540
+
+Classification report:
+              precision    recall  f1-score   support
+
+           0       0.82      0.91      0.86      2436
+           1       0.83      0.69      0.75      1565
+
+    accuracy                           0.82      4001
+   macro avg       0.83      0.80      0.81      4001
+weighted avg       0.83      0.82      0.82      4001
+
+
+
+
+Label distribution:
+Bot Label
+1    25018
+0    24982
+Name: count, dtype: int64
+
+Accuracy: 0.4858
+F1 Score: 0.4743
+
+Classification report:
+              precision    recall  f1-score   support
+
+           0       0.49      0.51      0.50      4996
+           1       0.49      0.46      0.47      5004
+
+    accuracy                           0.49     10000
+   macro avg       0.49      0.49      0.49     10000
+weighted avg       0.49      0.49      0.49     10000
+
+
+
+----------------------------------------------------xperimenbt
+spam
+PS E:\H++\disertatie\ml-service\training> python .\experiment_spam_model.py
+Columns found: ['COMMENT_ID', 'AUTHOR', 'DATE', 'CONTENT', 'CLASS']
+Total rows: 1956
+
+Label distribution:
+CLASS
+1    1005
+0     951
+Name: count, dtype: int64
+
+================================================================================
+Running experiment: baseline_unigram_bigram
+Accuracy:  0.9286
+F1:        0.9286
+Precision: 0.9529
+Recall:    0.9055
+
+================================================================================
+Running experiment: no_stopwords
+Accuracy:  0.9490
+F1:        0.9497
+Precision: 0.9594
+Recall:    0.9403
+
+================================================================================
+Running experiment: unigram_bigram_trigram
+Accuracy:  0.9311
+F1:        0.9316
+Precision: 0.9485
+Recall:    0.9154
+
+================================================================================
+Running experiment: min_df_1
+Accuracy:  0.9311
+F1:        0.9320
+Precision: 0.9439
+Recall:    0.9204
+
+================================================================================
+Running experiment: class_weight_balanced
+Accuracy:  0.9286
+F1:        0.9286
+Precision: 0.9529
+Recall:    0.9055
+
+
+================================================================================
+BEST MODEL
+no_stopwords
+Best F1: 0.9497
+
+Classification report for best model:
+              precision    recall  f1-score   support
+
+           0       0.94      0.96      0.95       191
+           1       0.96      0.94      0.95       201
+
+    accuracy                           0.95       392
+   macro avg       0.95      0.95      0.95       392
+weighted avg       0.95      0.95      0.95       392
+
+-threshold run
+PS E:\H++\disertatie\ml-service\training> python .\experiment_spam_model.py
+Columns found: ['COMMENT_ID', 'AUTHOR', 'DATE', 'CONTENT', 'CLASS']
+Total rows: 1956
+
+Label distribution:
+CLASS
+1    1005
+0     951
+Name: count, dtype: int64
+
+================================================================================
+Running experiment: baseline_unigram_bigram
+Accuracy:  0.9286
+F1:        0.9286
+Precision: 0.9529
+Recall:    0.9055
+
+================================================================================
+Running experiment: no_stopwords
+Accuracy:  0.9490
+F1:        0.9497
+Precision: 0.9594
+Recall:    0.9403
+
+================================================================================
+Running experiment: unigram_bigram_trigram
+Accuracy:  0.9311
+F1:        0.9316
+Precision: 0.9485
+Recall:    0.9154
+
+================================================================================
+Running experiment: min_df_1
+Accuracy:  0.9311
+F1:        0.9320
+Precision: 0.9439
+Recall:    0.9204
+
+================================================================================
+Running experiment: class_weight_balanced
+Accuracy:  0.9286
+F1:        0.9286
+Precision: 0.9529
+Recall:    0.9055
+
+================================================================================
+Running experiment: stronger_regularization_C_0_5
+Accuracy:  0.9286
+F1:        0.9286
+Precision: 0.9529
+Recall:    0.9055
+
+================================================================================
+Running experiment: weaker_regularization_C_2
+Accuracy:  0.9337
+F1:        0.9343
+Precision: 0.9487
+Recall:    0.9204
+
+================================================================================
+SUMMARY
+                         name  accuracy       f1  precision   recall
+                 no_stopwords  0.948980 0.949749   0.959391 0.940299
+    weaker_regularization_C_2  0.933673 0.934343   0.948718 0.920398
+                     min_df_1  0.931122 0.931990   0.943878 0.920398
+           1       0.96      0.94      0.95       201
+
+    accuracy                           0.95       392
+   macro avg       0.95      0.95      0.95       392
+weighted avg       0.95      0.95      0.95       392
+
+
+Threshold comparison for best model:
+ threshold  accuracy       f1  precision   recall
+       0.3  0.885204 0.897025   0.830508 0.975124
+       0.4  0.933673 0.936585   0.918660 0.955224
+       0.5  0.948980 0.949749   0.959391 0.940299
+       0.6  0.928571 0.926316   0.983240 0.875622
+       0.7  0.877551 0.865922   0.987261 0.771144
+       0.8  0.826531 0.796407   1.000000 0.661692
+       0.9  0.683673 0.553957   1.000000 0.383085
+
+Add these results to your dissertation comparison table
+
+For spam model experiments, you can report something like:
+
+Experiment	Accuracy	F1	Precision	Recall
+TF-IDF 1-2 grams + English stopwords	0.9286	0.9286	0.9529	0.9055
+TF-IDF 1-2 grams, no stopword removal	0.9490	0.9497	0.9594	0.9403
+TF-IDF 1-3 grams + English stopwords	0.9311	0.9316	0.9485	0.9154
+TF-IDF min_df=1 + English stopwords	0.9311	0.9320	0.9439	0.9204
+Logistic Regression C=2	0.9337	0.9343	0.9487	0.9204
+
+Removing English stopword filtering improved the spam classifier.
+This is likely because short YouTube spam messages often rely on phrases where function words
+contribute useful context.
+
+grid search
+Best parameters: {'clf__C': 5.0, 'clf__class_weight': 'balanced', 'tfidf__max_df': 0.85, 'tfidf__min_df': 3, 'tfidf__ngram_range': (1, 2), 'tfidf__stop_words': None} Best cross-validation F1: 0.9565 Test set classification report: precision recall f1-score support 0 0.94 0.96 0.95 191 1 0.96 0.95 0.95 201 accuracy 0.95 392 macro avg 0.95 0.95 0.95 392 weighted avg 0.95 0.95 0.95 392
+
+Dissertation comparison
+
+You can report it like this:
+
+Spam model	Accuracy	Spam precision	Spam recall	Spam F1
+Baseline: stopwords, 1-2 grams	0.9286	0.9529	0.9055	0.9286
+Manual best: no stopwords, 1-2 grams	0.9490	0.9594	0.9403	0.9497
+Grid search best	0.95	0.96	0.95	0.95
+
+GridSearchCV selected a Logistic Regression classifier using TF-IDF unigram and bigram features, no stopword removal, min_df=3, max_df=0.85, C=5.0, and balanced class weights. This configuration achieved the best cross-validation F1 score of 0.9565 and maintained strong held-out test performance, with spam-class precision of 0.96, recall of 0.95, and F1 score of 0.95.
+
+------------------------troll experiment
+$ python experiment_troll_model.py
+Columns found: ['content', 'label']
+Total rows: 20001
+
+Label distribution:
+label
+0    12179
+1     7822
+Name: count, dtype: int64
+
+================================================================================
+Running experiment: baseline_stopwords_bigram
+Accuracy:  0.8205
+F1:        0.7479
+Precision: 0.8301
+Recall:    0.6805
+
+================================================================================
+Running experiment: no_stopwords_bigram
+Accuracy:  0.8293
+F1:        0.7609
+Precision: 0.8413
+Recall:    0.6946
+
+================================================================================
+Running experiment: balanced_no_stopwords_bigram
+Accuracy:  0.8230
+F1:        0.7915
+Precision: 0.7340
+Recall:    0.8588
+
+================================================================================
+Running experiment: trigrams_no_stopwords
+Accuracy:  0.8380
+F1:        0.7769
+Precision: 0.8424
+Recall:    0.7208
+
+================================================================================
+Running experiment: min_df_1_no_stopwords
+Accuracy:  0.7976
+F1:        0.7382
+Precision: 0.7469
+Recall:    0.7297
+
+================================================================================
+Running experiment: C_0_5_no_stopwords
+Accuracy:  0.7763
+F1:        0.6577
+Precision: 0.8190
+Recall:    0.5495
+
+================================================================================
+Running experiment: C_2_no_stopwords
+Accuracy:  0.8653
+F1:        0.8216
+Precision: 0.8523
+Recall:    0.7930
+
+================================================================================
+Running experiment: balanced_C_2_no_stopwords
+Accuracy:  0.8485
+F1:        0.8204
+Precision: 0.7651
+Recall:    0.8843
+
+================================================================================
+SUMMARY
+                        name  accuracy       f1  precision   recall
+            C_2_no_stopwords  0.865284 0.821582   0.852335 0.792971
+   balanced_C_2_no_stopwords  0.848538 0.820391   0.765064 0.884345
+balanced_no_stopwords_bigram  0.823044 0.791519   0.734025 0.858786
+       trigrams_no_stopwords  0.838040 0.776860   0.842420 0.720767
+         no_stopwords_bigram  0.829293 0.760938   0.841331 0.694569
+   baseline_stopwords_bigram  0.820545 0.747893   0.830086 0.680511
+       min_df_1_no_stopwords  0.797551 0.738203   0.746893 0.729712
+          C_0_5_no_stopwords  0.776306 0.657744   0.819048 0.549521
+
+================================================================================
+BEST MODEL
+C_2_no_stopwords
+Best F1: 0.8216
+
+Classification report for best model:
+              precision    recall  f1-score   support
+
+           0       0.87      0.91      0.89      2436
+           1       0.85      0.79      0.82      1565
+
+    accuracy                           0.87      4001
+   macro avg       0.86      0.85      0.86      4001
+weighted avg       0.86      0.87      0.86      4001
+
+
+Threshold comparison for best model:
+ threshold  accuracy       f1  precision   recall
+      0.30  0.783554 0.774244   0.653897 0.948882
+      0.35  0.819295 0.800772   0.703973 0.928435
+      0.40  0.840290 0.814298   0.746802 0.895208
+      0.45  0.861535 0.826983   0.808797 0.846006
+      0.50  0.865284 0.821582   0.852335 0.792971
+      0.55  0.850037 0.788136   0.880821 0.713099
+      0.60  0.819795 0.725333   0.898113 0.608307
+      0.65  0.767558 0.603242   0.907574 0.451757
+      0.70  0.717571 0.457253   0.920696 0.304153
+
+
+For your app, I would use 0.45 for troll because it gives better F1 and better recall. Troll detection usually benefits from catching more suspicious comments, as long as the UI still shows scores transparently.
+
+Dissertation comparison table
+
+You can report:
+
+Experiment	Accuracy	F1	Precision	Recall
+Baseline, stopwords, 1-2 grams	0.8205	0.7479	0.8301	0.6805
+No stopwords, 1-2 grams	0.8293	0.7609	0.8413	0.6946
+Balanced, no stopwords, 1-2 grams	0.8230	0.7915	0.7340	0.8588
+No stopwords, 1-3 grams	0.8380	0.7769	0.8424	0.7208
+No stopwords, min_df=1	0.7976	0.7382	0.7469	0.7297
+No stopwords, C=0.5	0.7763	0.6577	0.8190	0.5495
+No stopwords, C=2.0	0.8653	0.8216	0.8523	0.7930
+Balanced, no stopwords, C=2.0	0.8485	0.8204	0.7651
+
+
+The best overall troll classifier used TF-IDF unigram/bigram features without stopword removal and Logistic Regression with C=2.0. This improved F1 from 0.7540 to 0.8216. A balanced version increased recall to 0.8843 but reduced precision, so the unbalanced C=2.0 model was selected as the best balanced configuration.
+
+with grid search
+
+Best parameters:
+{'clf__C': 3.0, 'clf__class_weight': None, 'tfidf__max_df': 0.85, 'tfidf__min_df': 1, 'tfidf__ngram_range': (1, 3), 'tfidf__stop_words': 'english'}
+
+Best cross-validation F1: 0.8098
+
+Test set classification report:
+              precision    recall  f1-score   support
+
+           0       0.95      0.82      0.88      2436
+           1       0.77      0.93      0.84      1565
+
+    accuracy                           0.86      4001
+   macro avg       0.86      0.87      0.86      4001
+weighted avg       0.88      0.86      0.86      4001
+
+Grid search selected a Logistic Regression model with TF-IDF unigram, bigram, and trigram features, English stopword removal, min_df=1, max_df=0.85, and C=3.0. Compared with the manually tuned model, the grid-search model improved troll-class recall from 0.79 to 0.93 and F1 from 0.82 to 0.84, while reducing precision from 0.85 to 0.77. Because the application is intended to flag suspicious comments for review rather than perform automatic moderation, the higher-recall model was preferred.
+
+Troll model	Accuracy	Troll precision	Troll recall	Troll F1
+Manual best: C=2.0, no stopwords, 1-2 grams	0.8653	0.8523	0.7930	0.8216
+Grid search best: C=3.0, stopwords, 1-3 grams	0.86	0.77	0.93	0.84
+
+
+---------------------------------------------account
+experiment run
+Columns found: ['User ID', 'Username', 'Tweet', 'Retweet Count', 'Mention Count', 'Follower Count', 'Verified', 'Bot Label', 'Location', 'Created At', '
+Hashtags']
+Total rows: 50000
+
+Feature columns:
+['retweet_count', 'mention_count', 'follower_count', 'verified', 'tweet_length', 'url_count', 'hashtag_count_text', 'mention_symbol_count', 'uppercase_r
+atio', 'hashtags_field_count', 'log_follower_count', 'retweet_per_follower', 'mentions_per_char', 'hashtags_per_char']
+
+Label distribution:
+Bot Label
+1    25018
+0    24982
+Name: count, dtype: int64
+
+Feature summary:
+                             mean          std        min           max
+retweet_count           50.005600    29.181160   0.000000    100.000000
+mention_count            2.513760     1.708563   0.000000      5.000000
+follower_count        4988.602380  2878.742898   0.000000  10000.000000
+verified                 0.500080     0.500005   0.000000      1.000000
+tweet_length            62.627340    16.471543  23.000000    118.000000
+url_count                0.000000     0.000000   0.000000      0.000000
+hashtag_count_text       0.000000     0.000000   0.000000      0.000000
+mention_symbol_count     0.000000     0.000000   0.000000      0.000000
+uppercase_ratio          0.022333     0.009804   0.009615      0.178571
+hashtags_field_count     2.500260     1.709368   0.000000      5.000000
+log_follower_count       8.211551     0.987491   0.693147      9.210540
+retweet_per_follower     0.047830     0.781424   0.000000     97.000000
+mentions_per_char        0.000000     0.000000   0.000000      0.000000
+hashtags_per_char        0.000000     0.000000   0.000000      0.000000
+
+================================================================================
+Running experiment: random_forest_baseline
+Accuracy:  0.4962
+F1:        0.4899
+Precision: 0.4965
+Recall:    0.4834
+
+================================================================================
+Running experiment: random_forest_deeper
+Accuracy:  0.4998
+F1:        0.5010
+Precision: 0.5002
+Recall:    0.5018
+
+================================================================================
+Running experiment: extra_trees
+Accuracy:  0.5035
+F1:        0.5075
+Precision: 0.5038
+Recall:    0.5112
+
+================================================================================
+Running experiment: gradient_boosting
+Accuracy:  0.4999
+F1:        0.5016
+Precision: 0.5003
+Recall:    0.5030
+
+================================================================================
+Running experiment: logistic_regression_scaled
+Accuracy:  0.4949
+F1:        0.4884
+Precision: 0.4952
+Recall:    0.4818
+
+
+           0       0.50      0.50      0.50      4996
+           1       0.50      0.51      0.51      5004
+
+    accuracy                           0.50     10000
+   macro avg       0.50      0.50      0.50     10000
+weighted avg       0.50      0.50      0.50     10000
+
+
+The account-level model did not achieve meaningful predictive performance. Multiple classifiers, including Random Forest, Extra Trees, Gradient Boosting, and Logistic Regression, all remained near random performance, with F1 scores around 0.50. This suggests that the available account dataset/features were not sufficiently informative or were not transferable to the YouTube comment setting. Therefore, account-based signals were retained as lightweight heuristic features rather than as a standalone trained classifier.
+
+
+
+
+
