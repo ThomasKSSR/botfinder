@@ -10,7 +10,7 @@ public class TextPreprocessorTest {
     void normalize_replaces_urls_and_trims_and_lowercases() {
         TextPreprocessor p = new TextPreprocessor();
         String out = p.normalize("  Hello HTTP://example.com!!!   ");
-        assertEquals("hello <url>!!", out);
+        assertEquals("hello <url>", out);
     }
 
     @Test

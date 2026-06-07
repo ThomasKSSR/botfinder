@@ -35,20 +35,6 @@ public class AnalysisListener {
     @RabbitListener(queues = MessagingConstants.Q_ANALYSIS)
     public void onComments(CommentsIngestedEvent event) {
         System.out.println("[ANALYSIS] got jobId=" + event.jobId() + " comments=" + event.comments().size());
-        // spam-ham comments
-        //https://archive.ics.uci.edu/dataset/380/youtube+spam+collection
-        // https://www.kaggle.com/datasets/lakshmi25npathi/images
-        // https://www.kaggle.com/datasets/fivethirtyeight/russian-troll-tweets
-
-        //troll
-        // https://www.kaggle.com/datasets/dataturks/dataset-for-detection-of-cybertrolls
-        // https://www.kaggle.com/datasets/amirmeymandi/troll-detection
-
-        //account
-        // https://www.kaggle.com/datasets/goyaladi/twitter-bot-detection-dataset
-        // https://www.kaggle.com/datasets/davidmartngutirrez/twitter-bots-accounts
-
-
         BotDetector detector = new BotDetector();
 
         List<BotDetector.DetectionResult> detections = detector.detect(event.comments());
