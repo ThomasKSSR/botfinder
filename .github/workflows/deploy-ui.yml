@@ -38,7 +38,7 @@ jobs:
       - name: Build frontend
         run: npm run build
         env:
-          VITE_API_BASE_URL: https://bond-blacks-identifies-landscapes.trycloudflare.com
+          VITE_API_BASE_URL: https://est-best-followed-develops.trycloudflare.com
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3
