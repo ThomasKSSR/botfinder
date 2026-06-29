@@ -38,7 +38,7 @@ jobs:
       - name: Build frontend
         run: npm run build
         env:
-          VITE_API_BASE_URL: https://trademark-jeans-formation-roles.trycloudflare.com
+          VITE_API_BASE_URL: https://courses-laden-presents-authorized.trycloudflare.com
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3
