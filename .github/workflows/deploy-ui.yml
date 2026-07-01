@@ -38,7 +38,7 @@ jobs:
       - name: Build frontend
         run: npm run build
         env:
-          VITE_API_BASE_URL: https://math-dam-swap-ottawa.trycloudflare.com
+          VITE_API_BASE_URL: https://normal-usa-trim-diagnosis.trycloudflare.com
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3
