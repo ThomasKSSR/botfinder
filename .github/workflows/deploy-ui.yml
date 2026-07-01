@@ -38,7 +38,7 @@ jobs:
       - name: Build frontend
         run: npm run build
         env:
-          VITE_API_BASE_URL: https://normal-usa-trim-diagnosis.trycloudflare.com
+          VITE_API_BASE_URL: https://senator-technical-meetup-data.trycloudflare.com
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3
